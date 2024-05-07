@@ -1,4 +1,4 @@
-# Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored
+# Implementation of Simple Linear Regression Model for Predicting the Marks Scored
 
 ## AIM:
 To write a program to predict the marks scored by a student using the simple linear regression model.
@@ -8,70 +8,105 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-Import pandas, numpy and sklearn.                  
-Calculate the values for the training data set.             
-Calculate the values for the test data set.
-Plot the graph for both the data sets and calculate for MAE, MSE and RMSE
+1. Import the needed packages.
+2. Assigning hours to x and scores to y.
+3. Plot the scatter plot.
+4. Use mse,rmse,mae formula to find the values.
+
 ## Program:
+```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: Abisheik R
+Developed by: ABISHEIK R
 RegisterNumber:  212223040005
 */
+```
+```
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error,mean_squared_error
-df=pd.read_csv("CSVs/student_scores.csv")
-df.head()
-df.tail()
-X,Y=df.iloc[:,:-1].values, df.iloc[:,1].values
-print(X)
-print(Y)
-from sklearn.model_selection import train_test_split as tts
-Xtrain,Xtest,Ytrain,Ytest=tts(X,Y,test_size=1/3,random_state=0)
-from sklearn.linear_model import LinearRegression as lr
-reg=lr()
-reg.fit(Xtrain,Ytrain)
-Ypred=reg.predict(Xtest)
-print(Ypred)
-plt.scatter(Xtrain,Ytrain,color="orange")
-plt.plot(Xtrain,reg.predict(Xtrain),color="red")
-plt.title("Hours vs Scores (Training Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-plt.scatter(Xtest,Ytest,color="blue")
-plt.plot(Xtest,reg.predict(Xtest),color="green")
-plt.title("Hours vs Scores (Test Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-print("MSE : ",mean_squared_error(Ytest,Ypred))
-print("MAE : ",mean_absolute_error(Ytest,Ypred))
-print("RMSE : ",np.sqrt(mse))
+import matplotlib.pyplot as plt
 
+dataset=pd.read_csv('student_scores.csv')
+print(dataset.head())
+dataset=pd.read_csv('student_scores.csv')
+print(dataset.tail())
+x=dataset.iloc[:,:-1].values
+print(x)
+y=dataset.iloc[:,1].values
+print(y)
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
+from sklearn.linear_model import LinearRegression
+reg=LinearRegression()
+reg.fit(x_train,y_train)
+y_pred = reg.predict(x_test)
+```
+```
+print(y_pred)
+print(y_test)
+
+plt.scatter(x_train,y_train,color='purple')
+plt.plot(x_train,reg.predict(x_train),color='black')
+plt.title("Hours vs Scores(Training set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+
+plt.scatter(x_test,y_test,color='red')
+plt.plot(x_train,reg.predict(x_train),color='black')
+plt.title("Hours vs Scores(Training set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+
+mse=mean_absolute_error(y_test,y_pred)
+print('Mean Square Error = ',mse)
+mae=mean_absolute_error(y_test,y_pred)
+print('Mean Absolute Error = ',mae)
+rmse=np.sqrt(mse)
+print("Root Mean Square Error = ",rmse)
+```
 ## Output:
 
-![simple linear regression model for predicting the marks scored](sam.png)
+### To read head of the file
 
-![Screenshot 2024-03-02 155658](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/0cee05ae-7270-417d-98bf-28372c8c89e3)
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/02612c30-75e9-423e-b597-f2c1304fe747)
 
-![Screenshot 2024-03-02 155654](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/7a891bbb-f462-4784-b7e7-f91580d50cbd)
+### To read tail of the file
 
-![ai ex2](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/aea46236-47d5-4a7d-83e1-daff65870248)
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/a67565c6-fd64-46d4-b365-9def987ae9c7)
 
-![Screenshot 2024-03-02 160150](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/45a15289-76b7-4f2a-a4d7-95efaffa4491)
+### Compare Dataset
 
-![Screenshot 2024-03-02 160841](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/42b45ea8-2a8e-45af-86ef-56b52204ca2d)
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/86b800f7-5b6f-46b6-b6ca-df1b8816cc48)
 
-![Screenshot 2024-03-02 160936](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/c30fec44-f684-4ea2-8f67-fb7543245022)
+### Predicted Value
 
-![Screenshot 2024-03-02 160957](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/dd1f87be-3de1-4150-9942-bd85660ab845)
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/dccb3548-7ef9-497c-a31a-956831b10c3b)
+
+### Graph for Training Dataset
+
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/40a86ad4-0d31-4b53-adb5-e6792ffafb43)
+
+### Graph for testing Dataset
+
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/f365668d-d69d-4c67-8221-0eb52cf944d4)
 
 
-![Screenshot 2024-03-02 160354](https://github.com/Dharma23012432/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/152275002/ca6a564d-8e06-4a62-8456-355b72e537a8)
 
+
+
+
+
+
+
+
+
+### Error
+
+![image](https://github.com/amal-2006/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/148410730/29786026-97ca-48ee-a459-a73ca17fc321)
 
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
